@@ -10,6 +10,5 @@ class ISSRA(App):
         y = Label(text= 'Jericho')
         return y
 
-
 if __name__ == '__main__':
     ISSRA().run()
