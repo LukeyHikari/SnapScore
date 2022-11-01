@@ -7,7 +7,8 @@ from kivy.uix.label import Label
 class ISSRA(App):
     def build(self):
         x = Label(text= 'Jericho')
-        return x
+        y = Label(text= 'Jericho')
+        return y
 
 
 if __name__ == '__main__':
