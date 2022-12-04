@@ -1,0 +1,16 @@
+#:kivy 1.0.9
+
+<butt1>:
+    size: 50, 50
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: self.pos
+
+<MainScreen>:
+    canvas:
+        Rectangle:
+            pos: self.center_x - 5, 0
+            size: 10, self.height
+    #butt1:
+        #center: self.parent.center
