@@ -1,41 +1,26 @@
 from sys import _xoptions
 from kivymd.app import MDApp
-from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.screen import MDScreen
+from kivy.uix.screenmanager import ScreenManager, FadeTransition  
 from kivy.lang import Builder
 
-KV = '''
-MDScreen:
+class ScreenManager(ScreenManager):
+    pass
 
-    MDNavigationLayout:
+class Opening_Screen(MDScreen):
+    pass
 
-        MDScreenManager:
-
-            MDScreen:
-
-                MDTopAppBar:
-                    elevation: 4
-                    pos_hint: {"top": 1}
-                    md_bg_color: "#90abe0"
-                    specific_text_color: "#4a4939"
-                    left_action_items:
-                        [['menu', lambda x: nav_drawer.set_state("open")]]
-
-
-        MDNavigationDrawer:
-            id: nav_drawer
-            radius: (0, 16, 16, 0)
-
-            ContentNavigationDrawer:
-'''
-
-class ContentNavigationDrawer(MDBoxLayout):
+class Main_Screen(MDScreen):
     pass
 
 class ISSRA(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Light"
         screen = Builder.load_file('mainwindow.kv')
-        return screen
+        sm = ScreenManager()
+        sm.add_widget(Opening_Screen(name='oscreen'))
+        sm.add_widget(Main_Screen(name='mscreen'))
+        return sm
 
 if __name__ == '__main__':
     ISSRA().run()
