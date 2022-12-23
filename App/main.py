@@ -34,7 +34,7 @@ class ContentNavigationDrawer(MDBoxLayout):
 class ISSRA(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Light"
-        screen = Builder.load_string(KV)
+        screen = Builder.load_file('mainwindow.kv')
         return screen
 
 if __name__ == '__main__':
