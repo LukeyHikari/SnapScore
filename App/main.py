@@ -1,26 +1,27 @@
 from sys import _xoptions
 from kivymd.app import MDApp
-from kivymd.uix.screen import MDScreen
 from kivy.uix.screenmanager import ScreenManager, FadeTransition  
 from kivy.lang import Builder
+from kivy.clock import Clock
 
-class ScreenManager(ScreenManager):
-    pass
+class SnapScore(MDApp):
+    global smanager
+    smanager = ScreenManager()
 
-class Opening_Screen(MDScreen):
-    pass
-
-class Main_Screen(MDScreen):
-    pass
-
-class ISSRA(MDApp):
     def build(self):
-        self.theme_cls.theme_style = "Light"
-        screen = Builder.load_file('mainwindow.kv')
-        sm = ScreenManager()
-        sm.add_widget(Opening_Screen(name='oscreen'))
-        sm.add_widget(Main_Screen(name='mscreen'))
-        return sm
+        self.title = "SnapScore"
+        #self.theme_cls.theme_style = "Light"
+        smanager.add_widget(Builder.load_file('openscreen.kv'))
+        smanager.add_widget(Builder.load_file('snapscore.kv'))   
+        return smanager
+
+    def on_start(self):
+        Clock.schedule_once(self.change_screen, 3)
+
+    def change_screen(self, dt):
+        smanager.transition = FadeTransition(clearcolor=(0,0,0,0))
+        smanager.duration = 2 
+        smanager.current = "mscreen"
 
 if __name__ == '__main__':
-    ISSRA().run()
+    SnapScore().run()
