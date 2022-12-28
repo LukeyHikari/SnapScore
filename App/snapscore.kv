@@ -1,27 +1,36 @@
 MDScreen:
     name: "mscreen"
-    MDNavigationLayout:
+    MDFloatLayout:
         MDScreenManager:
             MDScreen:
-                MDTopAppBar:
-                    use_overflow: True
-                    elevation: 4
-                    pos_hint: {"top": 1}
-                    md_bg_color: "#e7e4c0"
-                    specific_text_color: "#4a4939"
-                    left_action_items:
-                        [['menu', lambda x: nav_drawer.set_state("open")]]
+                MDWidget:
+                    canvas:
+                        Color:
+                            rgb: 0, .5, 1
+                        Rectangle:
+                            size: self.width, self.height/8
+                            pos: self.x, self.top*.935
 
-        MDNavigationDrawer:
+                MDIconButton: #Navigation Drawer Button
+                    id: nav_drawer_button
+                    icon: "menu"
+                    icon_size: "32sp"
+                    theme_icon_color: "Custom"
+                    icon_color: "white"
+                    pos_hint: {"top": 1}
+                    on_press: nav_drawer.set_state("open")
+
+        MDNavigationDrawer: #Navigation Drawer
             id: nav_drawer
             radius: (0, 16, 16, 0)
             MDNavigationDrawerMenu:
                 MDNavigationDrawerHeader:
-                    title: "SnapScore"
+                    title: "SnapScore"                    
                     title_color: "#4a4939"
+                    source: "assets/logo.png"
                     spacing: "4dp"
                     padding: "12dp", 0, 0, "56dp"
                     
-                MDNavigationDrawerItem:
+                MDNavigationDrawerItem: #help button
                     icon: "help-circle-outline"
                     text: "Help"
